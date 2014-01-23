@@ -20,8 +20,9 @@ public class Logger {
 
 		
 	}
-	public static void init(String directory){
+	public static void init(String pdirectory){
 		if(logFile==null){
+			directory=pdirectory;
 			(new File(directory)).mkdir();
 			logFile=new File(directory+log_file_name);
 			logFile2=new File(directory+log_file_name2);
@@ -31,7 +32,7 @@ public class Logger {
 			try {
 				logFile.createNewFile();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 			log("\n Neustart \n");
@@ -72,7 +73,7 @@ public class Logger {
 				output.append(DateFormat.format("MM-dd hh:mm:ss", new java.util.Date())+" "+msg+"\n");
 				output.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 		}
