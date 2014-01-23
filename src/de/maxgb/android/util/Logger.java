@@ -8,6 +8,14 @@ import java.io.IOException;
 import android.text.format.DateFormat;
 import android.util.Log;
 
+/**
+ * Android Logging class which should replace android.util.Log, respectively puts itself between the application and Log.
+ * It provides a Debug-Logging, which, if enabled, also saves the log in a file and not only to logcat.
+ * The logfile is renamed into log.old after each app start and deleted after the second one. So there always exist two files.
+ * 
+ * @author Max Becker
+ *
+ */
 public class Logger {
 
 	private static boolean debug=false;
@@ -20,6 +28,11 @@ public class Logger {
 
 		
 	}
+	/**
+	 * Inits the logger and creates the necessary files.
+	 * Must be called before logging
+	 * @param pdirectory Directory where the logs shall be saved
+	 */
 	public static void init(String pdirectory){
 		if(logFile==null){
 			directory=pdirectory;
@@ -39,7 +52,10 @@ public class Logger {
 		}
 	}
 	
-	
+	/**
+	 * Sets extended Debugmode
+	 * @param mode
+	 */
 	public static  void setDebugMode(boolean mode){
 		debug=mode;
 	}
@@ -64,6 +80,10 @@ public class Logger {
 		log("ERROR "+tag+": "+msg+ "\nERROR-MESSAGE: "+t.getMessage());
 	}
 	
+	/**
+	 * Writes the message to the log file and adds the current time
+	 * @param msg Message
+	 */
 	private static void log(String msg){
 		if(debug&&logFile!=null){
 			try {
