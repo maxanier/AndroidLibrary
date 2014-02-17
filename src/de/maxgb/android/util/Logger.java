@@ -24,6 +24,7 @@ public class Logger {
 	private static String directory;
 	private static final String log_file_name="log.txt";
 	private static final String log_file_name2="log.old.txt";
+	
 	private Logger(){
 
 		
