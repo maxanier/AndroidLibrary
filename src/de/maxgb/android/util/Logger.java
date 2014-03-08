@@ -2,8 +2,10 @@ package de.maxgb.android.util;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintStream;
 
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -78,7 +80,16 @@ public class Logger {
 	}
 	public static void e(String tag,String msg,Throwable t){
 		Log.e(tag, msg, t);
-		log("ERROR "+tag+": "+msg+ "\nERROR-MESSAGE: "+t.getMessage());
+		String stacktrace="";
+		PrintStream p;
+		try {
+			p = new PrintStream(stacktrace);
+			t.printStackTrace(p);
+		} catch (FileNotFoundException e1) {
+			stacktrace=t.getMessage();
+		}
+		
+		log("ERROR "+tag+": "+msg+ "\n"+stacktrace);
 	}
 	
 	/**
