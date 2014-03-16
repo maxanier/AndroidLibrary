@@ -23,7 +23,7 @@ public class Logger {
 	private static boolean debug=false;
 	private static File logFile;
 	private static File logFile2;
-	private static String directory;
+	private static File directory;
 	private static final String log_file_name="log.txt";
 	private static final String log_file_name2="log.old.txt";
 	
@@ -38,13 +38,13 @@ public class Logger {
 	 */
 	public static void init(String pdirectory){
 		if(logFile==null){
-			directory=pdirectory;
-			(new File(directory)).mkdir();
-			logFile=new File(directory+log_file_name);
-			logFile2=new File(directory+log_file_name2);
+			directory=new File(pdirectory);
+			directory.mkdirs();
+			logFile=new File(directory,log_file_name);
+			logFile2=new File(directory,log_file_name2);
 			logFile2.delete();
 			logFile.renameTo(logFile2);
-			logFile=new File(directory+log_file_name);
+			logFile=new File(directory,log_file_name);
 			try {
 				logFile.createNewFile();
 			} catch (IOException e) {
