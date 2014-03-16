@@ -101,6 +101,12 @@ public class InfoBox {
 		public final int last_change;
 		public final String text;
 
+		/**
+		 * 
+		 * @param name Activityname
+		 * @param last_change Last change version
+		 * @param text text
+		 */
 		public Instruction(String name, int last_change, String text) {
 			this.activity_name = name;
 			this.last_change = last_change;
