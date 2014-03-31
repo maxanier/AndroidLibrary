@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 
+import android.os.Build;
 import android.text.format.DateFormat;
 import android.util.Log;
 
@@ -26,6 +27,7 @@ public class Logger {
 	private static File directory;
 	private static final String log_file_name="log.txt";
 	private static final String log_file_name2="log.old.txt";
+	private static final String TAG="Logger";
 	
 	private Logger(){
 
@@ -51,7 +53,8 @@ public class Logger {
 				
 				e.printStackTrace();
 			}
-			log("\n Neustart \n");
+			log("\nNeustart\n");
+			
 		}
 	}
 	
@@ -115,6 +118,21 @@ public class Logger {
 	}
 	public static File getOldLogFile(){
 		return logFile2;
+	}
+	
+	public static boolean inEmulator(){
+		Logger.i(TAG, "Testing if in Emulator");
+		boolean f=Build.FINGERPRINT.startsWith("generic");
+
+		Logger.i(TAG, "Fingerprint: "+f);
+		
+		boolean b=(Build.PRODUCT.equals("google_sdk")||Build.PRODUCT.equals("sdk"));
+		Logger.i(TAG, "Build: "+b);
+		
+		boolean g=Build.HARDWARE.contains("goldfish");
+		Logger.i(TAG, "Goldfish: "+g);
+		Logger.i(TAG, "End resul: "+(f||b||g));
+		return f||b||g;
 	}
 	
 
