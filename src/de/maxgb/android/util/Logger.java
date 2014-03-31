@@ -64,6 +64,7 @@ public class Logger {
 	 */
 	public static  void setDebugMode(boolean mode){
 		debug=mode;
+		Logger.i(TAG, "Device info: device "+Build.DEVICE+" build "+Build.MANUFACTURER+" Android "+Build.VERSION.CODENAME+":"+Build.VERSION.SDK_INT);
 	}
 	
 	public static boolean getDebugMode(){
